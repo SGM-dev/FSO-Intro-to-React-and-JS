@@ -6,7 +6,7 @@ const App = () => {
   const exercises2 = 7;
   const part3 = "State of a component";
   const exercises3 = 14;
-};
+
 
 return (
   <div>
@@ -23,5 +23,6 @@ return (
     <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
   </div>
 )
+};
 
 export default App;
