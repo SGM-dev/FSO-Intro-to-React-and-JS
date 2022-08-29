@@ -16,7 +16,7 @@ const Content = (props) => {
   return (
     <>
       <Part part={props.par1} exercises={props.ex1} />
-      <Part part={props.pat2} exercises={props.ex2} />
+      <Part part={props.par2} exercises={props.ex2} />
       <Part part={props.par3} exercises={props.ex3} />
     </>
   );
