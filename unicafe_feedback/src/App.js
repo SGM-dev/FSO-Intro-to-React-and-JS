@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 
-const Header = (props) => <h1>{props.text}</h1>;
+const Header = (props) => <h1>{props.name}</h1>;
+
+const StatisticLine = ({ text, value }) => {
+  if (text === "Positive feedback") {
+    return (
+      <tr>
+        <td>
+          {text}: {value} %
+        </td>
+      </tr>
+    );
+  }
+  return (
+    <tr>
+      <td>
+        {text}: {value}
+      </td>
+    </tr>
+  );
+};
 
 const App = () => {
   const [good, setGood] = useState(0);
@@ -25,7 +44,7 @@ const App = () => {
 
   return (
     <div>
-      <Header text='Give Feedback' />
+      <Header name="Give feedback" />
       <button onClick={handleGoodClick}>good</button>
       <button onClick={handleNeutralClick}>neutral</button>
       <button onClick={handleBadClick}>bad</button>
