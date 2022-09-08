@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const Header = (props) => <h1>{props.text}</h1>;
+
 const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
@@ -23,7 +25,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Give feedback</h1>
+      <Header text='Give Feedback' />
       <button onClick={handleGoodClick}>good</button>
       <button onClick={handleNeutralClick}>neutral</button>
       <button onClick={handleBadClick}>bad</button>
@@ -33,7 +35,7 @@ const App = () => {
       <p>bad: {bad}</p>
       <p>all: {all}</p>
       <p>average: {(good - bad) / all}</p>
-      <p>Positive feedback: {good * (100/all)} % </p>
+      <p>Positive feedback: {good * (100 / all)}% </p>
     </div>
   );
 };
