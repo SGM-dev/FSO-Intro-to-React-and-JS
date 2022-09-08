@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+const Header = (props) => <h1>{props.name}</h1>;
+const Anecdote = ({ text }) => (
+  <>
+    <p>{text}</p>
+  </>
+);
+
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -12,8 +21,18 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const handleAnecdoteClick = () => {
+    const arrayIndex = Math.floor(Math.random() * anecdotes.length);
+    setSelected(arrayIndex);
+  };
 
-  return <div>{anecdotes[selected]}</div>;
+  return (
+    <>
+      <Header name="Anecdote of the day" />
+      <Anecdote text={anecdotes[selected]} />
+      <Button onClick={handleAnecdoteClick} text="Next anecdote" />
+    </>
+  );
 };
 
 export default App;
