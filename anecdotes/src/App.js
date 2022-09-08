@@ -1,12 +1,28 @@
 import { useState } from "react";
 
 const Header = (props) => <h1>{props.name}</h1>;
+
 const Anecdote = ({ text, votesCount }) => (
   <>
     <p>{text}</p>
     <p>has {votesCount} votes</p>
   </>
 );
+
+const Winner = ({ anecdotes, allVotes }) => {
+  const highestVote = Math.max(...allVotes);
+  const winIndex = allVotes.indexOf(highestVote);
+  const win = anecdotes[winIndex];
+  if (highestVote === 0) {
+    return <p>No votes yet</p>;
+  }
+  return (
+    <>
+      <p>{win}</p>
+      <p>has {highestVote} votes</p>
+    </>
+  );
+};
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
@@ -41,6 +57,8 @@ const App = () => {
       <Anecdote text={anecdotes[selected]} votesCount={allVotes[selected]} />
       <Button onClick={handleAnecdoteClick} text="Next anecdote" />
       <Button onClick={handleVoteClick} text="vote" />
+      <Header name="Anecdotes with most votes" />
+      <Winner anecdotes={anecdotes} allVotes={allVotes} />
     </>
   );
 };
