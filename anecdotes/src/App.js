@@ -1,9 +1,10 @@
 import { useState } from "react";
 
 const Header = (props) => <h1>{props.name}</h1>;
-const Anecdote = ({ text }) => (
+const Anecdote = ({ text, votesCount }) => (
   <>
     <p>{text}</p>
+    <p>has {votesCount} votes</p>
   </>
 );
 
@@ -21,16 +22,25 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [allVotes, setAllVotes] = useState(Array(7).fill(0));
+
   const handleAnecdoteClick = () => {
     const arrayIndex = Math.floor(Math.random() * anecdotes.length);
     setSelected(arrayIndex);
   };
 
+  const handleVoteClick = () => {
+    const newVotes = [...allVotes];
+    newVotes[selected] += 1;
+    setAllVotes(newVotes);
+  };
+
   return (
     <>
       <Header name="Anecdote of the day" />
-      <Anecdote text={anecdotes[selected]} />
+      <Anecdote text={anecdotes[selected]} votesCount={allVotes[selected]} />
       <Button onClick={handleAnecdoteClick} text="Next anecdote" />
+      <Button onClick={handleVoteClick} text="vote" />
     </>
   );
 };
